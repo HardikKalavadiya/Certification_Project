@@ -1,0 +1,20 @@
+
+[
+{ "email" :"Testing101@yopmail.com" ,
+  "password" :"Testing2345"
+},
+
+{ "email":"Testing102@yopmail.com" ,
+"password":"Testing546456"
+},
+
+{
+	"email":"Testing103@yopmail.com" ,
+	"password": "Testing6574"
+},
+
+{ "email":"Testing104@yopmail.com",
+"password":"Testing657400"
+}
+
+]
