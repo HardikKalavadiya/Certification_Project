@@ -57,4 +57,20 @@ public class LoginAppTest extends BaseTest{
 		
 	}
 	
+	@Test(dataProvider="excelDataPack")
+	public void testExcelDataImport(String userName, String password) {
+		
+		System.out.println("This is first pair of data : "+userName+" & "+password);
+		
+		//loginPg.loginApplication(userName, password);
+		//String actualValidation = loginPg.getValidationText();
+		//Assert.assertEquals(actualValidation, "The email address or password you entered is incorrect");
+	}
+	
+	@DataProvider
+	public Object[][] excelDataPack() throws IOException{
+		Object exData[][] = getExcelData();
+		return exData;
+	}
+	
 }

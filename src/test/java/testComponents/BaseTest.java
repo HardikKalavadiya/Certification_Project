@@ -7,9 +7,16 @@ import java.io.IOException;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +32,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.google.common.io.Files;
 
 import pageObjects.LoginPage;
@@ -88,6 +96,31 @@ public class BaseTest {
 		});
 		return userData;
 	
+	}
+	
+	public Object[][] getExcelData() throws IOException {
+		DataFormatter formatter = new DataFormatter();
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\java\\data\\TestBook.xlsx");
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		int numberOfRows = sheet.getPhysicalNumberOfRows();
+		System.out.println("Total number of rows in current sheet :"+ numberOfRows);
+		XSSFRow row = sheet.getRow(0);
+		int colCount = row.getPhysicalNumberOfCells();
+		System.out.println("Total number of columns in row :"+colCount);
+		Object excelData[][] = new Object[numberOfRows-1][colCount];
+		
+		for(int i =0; i<numberOfRows-1;i++) {
+			row=sheet.getRow(i+1);
+			for(int j=0; j<colCount; j++) {
+				excelData[i][j] = formatter.formatCellValue(row.getCell(j));
+				//excelData[i][j] =row.getCell(j);
+				
+			}
+		}
+				return excelData;
+		
 	}
 	
 	public String getScreenShot(String testCaseName, WebDriver driver) throws IOException {

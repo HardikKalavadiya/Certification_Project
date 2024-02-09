@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="testComponents.Listeners"/>
-  </listeners>
-  <test thread-count="5" name="Signup Workflow Tests(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.SignupUser">
+      <class name="tests.LoginAppTest">
         <methods>
-          <include name="userSignupFlow"/>
+          <include name="testExcelDataImport"/>
           <include name="openLoginPage"/>
           <include name="closeBrowser"/>
         </methods>
-      </class> <!-- tests.SignupUser -->
+      </class> <!-- tests.LoginAppTest -->
     </classes>
-  </test> <!-- Signup Workflow Tests(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
